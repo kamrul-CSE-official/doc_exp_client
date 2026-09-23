@@ -2,15 +2,17 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import postsReducer from "./postsSlice";
-import commentsReducer from "./commentsSlice";
-import usersReducer from "./usersSlice";
+// import postsReducer from "./postsSlice";
+// import commentsReducer from "./commentsSlice";
+// import usersReducer from "./usersSlice";
+import counterReducer from "./features/counter/counterSlice";
 
 // Combine your reducers
 const rootReducer = combineReducers({
-  posts: postsReducer,
-  comments: commentsReducer,
-  users: usersReducer,
+  // posts: postsReducer,
+  // comments: commentsReducer,
+  // users: usersReducer,
+  counter: counterReducer,
 });
 
 // Redux Persist configuration
