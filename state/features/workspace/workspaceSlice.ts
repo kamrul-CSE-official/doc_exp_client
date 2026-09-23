@@ -219,6 +219,18 @@ export const workspaceSlice = createSlice({
       }
     },
 
+    // Update / Rename Item Reducer
+    updateItem: (
+      state,
+      action: PayloadAction<{ id: string; name: string }>,
+    ) => {
+      const { id, name } = action.payload;
+      const item = state.items.find((i) => i.id === id);
+      if (item) {
+        item.name = name;
+      }
+    },
+
     // SELECTION & TOGGLE
     selectFolder: (state, action: PayloadAction<string | null>) => {
       state.currentFolderId = action.payload;
@@ -389,6 +401,7 @@ export const {
   renameItem,
   updateFileContent,
   deleteItem,
+  updateItem,
   selectFolder,
   toggleFolderExpand,
   startEditingFile,

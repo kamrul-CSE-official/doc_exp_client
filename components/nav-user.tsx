@@ -17,14 +17,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  UnfoldMoreIcon,
-  SparklesIcon,
-  CheckmarkBadgeIcon,
-  CreditCardIcon,
-  NotificationIcon,
-  LogoutIcon,
-} from "@hugeicons/core-free-icons";
+import { UnfoldMoreIcon, LogoutIcon } from "@hugeicons/core-free-icons";
 import { useRouter } from "next/navigation";
 
 export function NavUser({
