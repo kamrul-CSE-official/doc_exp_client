@@ -33,6 +33,7 @@ export const counterSlice = createSlice({
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.comments;
+export const selectCount = (state: RootState) =>
+  state._persist?.rehydrated ? state._persist.rehydrated.value : 0;
 
 export default counterSlice.reducer;
