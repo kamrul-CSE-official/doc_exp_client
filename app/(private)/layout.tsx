@@ -68,7 +68,6 @@ export default function PrivateLayout({
   const [createType, setCreateType] = React.useState<CreateType>(null);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
-  // Redux থেকে সিলেক্টেড ফোল্ডারের ক্রমান্বয়ে পাথ (Array of folders) নেওয়া হচ্ছে
   const folderPath = useAppSelector(selectFolderPath) || [];
 
   React.useEffect(() => {

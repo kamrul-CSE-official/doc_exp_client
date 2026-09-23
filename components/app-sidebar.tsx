@@ -27,12 +27,20 @@ import {
 import { useAppSelector } from "@/state/hooks";
 import { selectFolderTree } from "@/state/features/workspace/workspaceSlice";
 
+type FolderTreeItem = {
+  id: string;
+  name: string;
+  type: string;
+  isExpanded: boolean;
+  children?: FolderTreeItem[];
+};
+
 // Static sample data for Teams, Projects, and User
 const data = {
   user: {
-    name: "Doc Exp",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "MD.Kamrul Hasan",
+    email: "kamrul24.official@gmail.com",
+    avatar: "/assets/images/Md.Kamrul PP.gif",
   },
   teams: [
     {
@@ -74,24 +82,34 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const folderTree = useAppSelector(selectFolderTree);
 
   const dynamicNavItems = React.useMemo(() => {
-    return folderTree.map((item: any) => ({
-      id: item.id,
-      title: item.name,
-      url: "#",
-      icon: (
-        <HugeiconsIcon
-          icon={item.type === "folder" ? Folder01Icon : File01Icon}
-          strokeWidth={2}
-        />
-      ),
-      isActive: item.isExpanded,
-      items: item.children?.map((child: any) => ({
-        id: child.id,
-        title: child.name,
+    return folderTree.map(
+      (item: {
+        id: string;
+        name: string;
+        type: string;
+        isExpanded: boolean;
+        children?: FolderTreeItem[];
+      }) => ({
+        id: item.id,
+        title: item.name,
         url: "#",
-        type: child.type,
-      })),
-    }));
+        icon: (
+          <HugeiconsIcon
+            icon={item.type === "folder" ? Folder01Icon : File01Icon}
+            strokeWidth={2}
+          />
+        ),
+        isActive: item.isExpanded,
+        items: item.children?.map(
+          (child: { id: string; name: string; type: string }) => ({
+            id: child.id,
+            title: child.name,
+            url: "#",
+            type: child.type,
+          }),
+        ),
+      }),
+    );
   }, [folderTree]);
 
   return (
@@ -100,7 +118,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={dynamicNavItems} />
+        <NavMain
+          items={
+            dynamicNavItems as React.ComponentProps<typeof NavMain>["items"]
+          }
+        />
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
