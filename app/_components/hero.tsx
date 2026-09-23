@@ -12,8 +12,10 @@ import {
   Command,
   FileText,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function HeroSectionOne() {
+  const router = useRouter();
   const headlineWords = "Organize your files, organize your mind".split(" ");
 
   return (
@@ -94,12 +96,15 @@ export function HeroSectionOne() {
           transition={{ duration: 0.4, delay: 0.9 }}
           className="relative z-10 mt-4 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button className="group relative inline-flex h-12 w-full sm:w-52 items-center justify-center rounded-xl bg-blue-600 px-6 font-medium text-white shadow-lg shadow-blue-500/25 transition-all duration-200 hover:bg-blue-500 hover:shadow-blue-500/40 active:scale-95 dark:bg-blue-500 dark:hover:bg-blue-600">
+          <button
+            className="group relative inline-flex h-12 w-full sm:w-52 items-center justify-center rounded-xl bg-blue-600 px-6 font-medium text-white shadow-lg shadow-blue-500/25 transition-all duration-200 hover:bg-blue-500 hover:shadow-blue-500/40 active:scale-95 dark:bg-blue-500 dark:hover:bg-blue-600 cursor-pointer"
+            onClick={() => router.push("/dashboard")}
+          >
             <span>Get Started</span>
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
 
-          <button className="inline-flex h-12 w-full sm:w-52 items-center justify-center rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 font-medium text-slate-800 dark:text-slate-200 shadow-sm transition-all duration-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-400 dark:hover:border-slate-700 active:scale-95">
+          <button className="inline-flex h-12 w-full sm:w-52 items-center justify-center rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 font-medium text-slate-800 dark:text-slate-200 shadow-sm transition-all duration-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-400 dark:hover:border-slate-700 active:scale-95  cursor-pointer">
             <Command className="mr-2 h-4 w-4 text-slate-500" />
             <span>View Demo</span>
           </button>
@@ -208,6 +213,8 @@ export function HeroSectionOne() {
 }
 
 const Navbar = () => {
+  const router = useRouter();
+
   return (
     <nav className="flex w-full items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 px-6 py-4">
       <div className="flex items-center gap-3">
@@ -222,7 +229,10 @@ const Navbar = () => {
       <div className="flex items-center gap-3">
         <ThemeToggleBtn />
 
-        <button className="h-9 rounded-lg bg-blue-600 dark:bg-blue-500 px-4 text-xs font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-500 dark:hover:bg-blue-600 transition-all active:scale-95">
+        <button
+          className="h-9 rounded-lg bg-blue-600 dark:bg-blue-500 px-4 text-xs font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-500 dark:hover:bg-blue-600 transition-all active:scale-95 cursor-pointer"
+          onClick={() => router.push("/dashboard")}
+        >
           Get Started
         </button>
       </div>
